@@ -1,0 +1,53 @@
+odir=`pwd`
+tempdir=$odir/temp
+docdir=$odir/FreeBSD-Ask
+mkdir -p $tempdir/.gitbook
+mkdir -p $tempdir/pdf
+mkdir -p $tempdir/onetex
+
+ln -s $docdir/.gitbook/assets $tempdir/.gitbook/assets
+ln -s $docdir/.gitbook/assets $tempdir/onetex/.gitbook/assets
+
+grep -o "([^(]*)\s*$" FreeBSD-Ask/mu-lu.md | sed -e 's/^(//' -e 's/)$//' |grep -v "mu-lu.md" > $tempdir/list
+grep -o "##.*" FreeBSD-Ask/mu-lu.md|sed  -e "s/.*章[[:space:]]*//" > $tempdir/chapter 
+cat /dev/null > $tempdir/onetex/temp.tex 
+
+count=1
+
+while IFS= read -r line;do
+	eval "ch$count=\"$line\""
+	count=$((count+1))
+done < $tempdir/chapter
+
+count=1
+curchapter="none"
+
+while read line
+do
+	subdir=$(dirname $line)
+	file=$(basename $line)
+	cd $docdir/$subdir
+	mkdir -p $tempdir/$subdir
+	# cmark-gfm -t latex -e table $file > $tempdir/$subdir/temp.tex 
+	if [ $curchapter != $subdir ];then
+		#
+		var="ch$count"
+		eval "cname=\"\${$var}\""
+		echo "\\chapter{$cname}" >> $tempdir/onetex/temp.tex
+		curchapter="$subdir"
+		count=$(($count + 1))
+	fi
+	cmark-gfm -t latex -e table $file >> $tempdir/onetex/temp.tex 
+	cd $tempdir/$subdir
+	cp $odir/wrap.tex $file.tex
+	# xelatex $file.tex
+	# xelatex $file.tex
+	# cp $file.pdf $tempdir/pdf/$file.pdf
+	cd $odir
+done < temp/list
+	cd $tempdir/onetex
+	cp $odir/wrap.tex ./
+#	xelatex wrap.tex
+#	xelatex wrap.tex
+#	cp wrap.pdf $odir/freebsdask.pdf
+

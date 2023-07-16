@@ -1,0 +1,51 @@
+--- cmark-gfm/extensions/table.c	2023-07-03 21:03:27.221567000 +0800
++++ temp/table.c	2023-07-03 21:04:36.675987000 +0800
+@@ -554,32 +554,30 @@
+       uint8_t *alignments = get_table_alignments(node);
+ 
+       renderer->cr(renderer);
+-      renderer->out(renderer, node, "\\begin{table}", false, LITERAL);
+-      renderer->cr(renderer);
+-      renderer->out(renderer, node, "\\begin{tabular}{", false, LITERAL);
++      renderer->out(renderer, node, "\\begin{tabularx}{\\textwidth}{|", false, LITERAL);
+ 
+       n_cols = ((node_table *)node->as.opaque)->n_columns;
+       for (i = 0; i < n_cols; i++) {
+         switch(alignments[i]) {
+         case 0:
+         case 'l':
+-          renderer->out(renderer, node, "l", false, LITERAL);
++          renderer->out(renderer, node, "X|", false, LITERAL);
+           break;
+         case 'c':
+-          renderer->out(renderer, node, "c", false, LITERAL);
++          renderer->out(renderer, node, "X|", false, LITERAL);
+           break;
+         case 'r':
+-          renderer->out(renderer, node, "r", false, LITERAL);
++          renderer->out(renderer, node, "X|", false, LITERAL);
+           break;
+         }
+       }
+       renderer->out(renderer, node, "}", false, LITERAL);
+       renderer->cr(renderer);
++      renderer->out(renderer, node, " \\hline", false, LITERAL);
++      renderer->cr(renderer);
+     } else {
+-      renderer->out(renderer, node, "\\end{tabular}", false, LITERAL);
++      renderer->out(renderer, node, "\\end{tabularx}", false, LITERAL);
+       renderer->cr(renderer);
+-      renderer->out(renderer, node, "\\end{table}", false, LITERAL);
+-      renderer->cr(renderer);
+     }
+   } else if (node->type == CMARK_NODE_TABLE_ROW) {
+     if (!entering) {
+@@ -591,6 +589,8 @@
+         renderer->out(renderer, node, " & ", false, LITERAL);
+       } else {
+         renderer->out(renderer, node, " \\\\", false, LITERAL);
++      renderer->cr(renderer);
++        renderer->out(renderer, node, " \\hline", false, LITERAL);
+       }
+     }
+   } else {

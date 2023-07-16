@@ -1,0 +1,34 @@
+\documentclass{ctexbook}
+\usepackage[left=2cm,right=2cm]{geometry}
+\usepackage{ltablex}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{fontspec}
+\usepackage{bookmark}
+\setmainfont{Noto Sans CJK SC}[AutoFakeSlant,AutoFakeBold]
+\usepackage{listings}
+\lstset{
+	basicstyle=\fontsize{9}{11}\selectfont\ttfamily,
+	numbers=left,
+	numbersep=1em,
+	numberstyle=\footnotesize,
+	frame=single,
+	breaklines=true,
+	basicstyle=\ttfamily,
+	columns=flexible,
+	backgroundcolor=\color{lightgray},
+	tabsize=4,
+	breakatwhitespace=false,
+%	prebreak=\space\textbackslash
+}
+%\sloppy
+\begin{document}
+
+\tableofcontents
+
+\input{temp}
+
+\end{document}
+

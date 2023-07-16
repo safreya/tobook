@@ -1,0 +1,5 @@
+cd temp/onetex
+xelatex wrap.tex
+xelatex wrap.tex
+cp wrap.pdf ../../freebsdask.pdf
+

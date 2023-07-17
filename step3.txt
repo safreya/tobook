@@ -1,7 +1,10 @@
+echo -e "\e[1;32m prepare *.tex \e[0m"
+read -p "begin ? " pausenow
 odir=`pwd`
 tempdir=$odir/temp
 docdir=$odir/FreeBSD-Ask
 mkdir -p $tempdir/.gitbook
+mkdir -p $tempdir/onetex/.gitbook
 mkdir -p $tempdir/pdf
 mkdir -p $tempdir/onetex
 

@@ -1,3 +1,5 @@
+echo -e "\e[1;32m download cmark-gfm and FreeBSD-Ask \e[0m"
+read -p "begin ? " pausenow
 git clone https://github.com/github/cmark-gfm
 cd cmark-gfm
 git checkout 2d65cd3c

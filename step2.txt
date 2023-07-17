@@ -1,3 +1,5 @@
+echo -e "\e[1;32m patch cmark-gfm and install it \e[0m"
+read -p "begin ? " pausenow
 patch cmark-gfm/extensions/table.c < patch/table.patch
 patch cmark-gfm/src/latex.c < patch/latex.patch
 mkdir buildcmarkgfm

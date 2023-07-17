@@ -1,3 +1,5 @@
+echo -e "\e[1;32m generate pdf \e[0m"
+read -p "begin ? " pausenow
 cd temp/onetex
 xelatex wrap.tex
 xelatex wrap.tex

@@ -340,7 +340,7 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
 
   case CMARK_NODE_THEMATIC_BREAK:
     BLANKLINE();
-    LIT("\\begin{center}\\rule{0.5\\linewidth}{1pt}\\end{center}");
+    LIT("\\begin{center}\\rule{0.5\\textwidth}{1pt}\\end{center}");
     BLANKLINE();
     break;
 

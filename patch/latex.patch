@@ -1,5 +1,5 @@
---- cmark-gfm/src/latex.c	2023-07-05 15:26:25.878238000 +0800
-+++ change/latex.c	2023-07-05 15:17:27.363605000 +0800
+--- cmark-gfm/src/latex.c	2023-07-17 08:48:07.682834000 +0800
++++ change/latex.c	2023-07-17 08:52:14.235462000 +0800
 @@ -320,11 +320,11 @@
  
    case CMARK_NODE_CODE_BLOCK:
@@ -19,7 +19,7 @@
    case CMARK_NODE_THEMATIC_BREAK:
      BLANKLINE();
 -    LIT("\\begin{center}\\rule{0.5\\linewidth}{\\linethickness}\\end{center}");
-+    LIT("\\begin{center}\\rule{0.5\\linewidth}{1pt}\\end{center}");
++    LIT("\\begin{center}\\rule{0.5\\textwidth}{1pt}\\end{center}");
      BLANKLINE();
      break;
  

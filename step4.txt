@@ -1,3 +1,5 @@
+echo -e "\e[1;32m patch temp.tex \e[0m"
+read -p "begin ? " pausenow
 sed -i -e "s/\\\chapter{FreeBSD 中文社区}/\\\chapter*{FreeBSD 中文社区}/" temp/onetex/temp.tex
 sed -i -e "s/\\\chapter{走进 FreeBSD}/\\\chapter*{走进 FreeBSD}/" temp/onetex/temp.tex
 

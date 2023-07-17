@@ -12,7 +12,8 @@ ln -s $docdir/.gitbook/assets $tempdir/.gitbook/assets
 ln -s $docdir/.gitbook/assets $tempdir/onetex/.gitbook/assets
 
 grep -o "([^(]*)\s*$" FreeBSD-Ask/mu-lu.md | sed -e 's/^(//' -e 's/)$//' |grep -v "mu-lu.md" > $tempdir/list
-grep -o "##.*" FreeBSD-Ask/mu-lu.md|sed  -e "s/.*章[[:space:]]*//" > $tempdir/chapter 
+echo "FreeBSD 从入门到跑路" > $tempdir/chapter
+grep -o "##.*" FreeBSD-Ask/mu-lu.md|sed  -e "s/.*章[[:space:]]*//" >> $tempdir/chapter 
 cat /dev/null > $tempdir/onetex/temp.tex 
 
 count=1

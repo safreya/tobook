@@ -7,7 +7,7 @@ else
 	case $ans in
 		n) exit 1
 		;;
-		*) pkg install -y texlive-base texlive-texmf tex-xetex
+		*) su -m root -c "pkg install -y texlive-base texlive-texmf tex-xetex"
 		;;
 	esac
 fi
@@ -21,7 +21,7 @@ else
 	case $ans in
 		n) exit 1
 		;;
-		*) pkg install -y noto-sans-sc
+		*) su -m root -c "pkg install -y noto-sans-sc"
 		;;
 	esac
 fi
@@ -35,7 +35,7 @@ else
 	case $ans in
 		n) exit 1
 		;;
-		*) pkg install -y cmake
+		*) su -m root -c "pkg install -y cmake"
 		;;
 	esac
 fi

@@ -1,9 +1,4 @@
 odir=`pwd`
-echo -e "\e[1;32m download cmark-gfm and FreeBSD-Ask \e[0m"
+echo -e "\e[1;32m download FreeBSD-Ask \e[0m"
 read -p "begin ? " pausenow
-git clone https://github.com/github/cmark-gfm
-cd cmark-gfm
-git checkout 2d65cd3c
-cd $odir
-
 git clone --depth 1 https://github.com/FreeBSD-Ask/FreeBSD-Ask

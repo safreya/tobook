@@ -1,5 +1,7 @@
 # tobook
 
+脚本在 FreeBSD 中运行
+
 首次运行：
 ```
 git clone https://github.com/safreya/tobook

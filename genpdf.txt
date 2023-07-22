@@ -1,0 +1,9 @@
+odir=`pwd`
+cd FreeBSD-Ask/
+git reset --hard
+git pull
+cd $odir
+sh step3.txt
+sh step4.txt
+sh step5.txt
+

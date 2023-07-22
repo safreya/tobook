@@ -45,3 +45,8 @@ cmake ../cmark-gfm
 make
 su -m root -c "make install"
 cd $odir
+
+echo -e "\e[1;32m download FreeBSD-Ask \e[0m"
+read -p "begin ? " pausenow
+git clone --depth 1 https://github.com/FreeBSD-Ask/FreeBSD-Ask
+cd $odir

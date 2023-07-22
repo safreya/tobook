@@ -26,6 +26,20 @@ else
 	esac
 fi
 
+echo -e "\e[1;32m check cmake ... \e[0m"
+if pkg info -e cmake;then
+	echo -e "\e[1;32m found \e[0m"
+else
+	echo -e "\e[1;31m not found \e[0m"
+	read -p "begin to install cmake[Y|n] " ans
+	case $ans in
+		n) exit 1
+		;;
+		*) pkg install -y cmake
+		;;
+	esac
+fi
+
 
 odir=`pwd`
 echo -e "\e[1;32m download cmark-gfm ... \e[0m"
@@ -39,6 +53,7 @@ echo -e "\e[1;32m patch cmark-gfm and install it \e[0m"
 read -p "begin ? " pausenow
 patch cmark-gfm/extensions/table.c < patch/table.patch
 patch cmark-gfm/src/latex.c < patch/latex.patch
+patch cmark-gfm/src/main.c < patch/main.patch
 mkdir buildcmarkgfm
 cd buildcmarkgfm
 cmake ../cmark-gfm

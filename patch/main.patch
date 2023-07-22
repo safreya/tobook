@@ -1,0 +1,10 @@
+--- cmark-gfm/src/main.c	2023-07-22 13:15:21.433532000 +0800
++++ change/main.c	2023-07-22 13:35:43.930845000 +0800
+@@ -159,6 +159,7 @@
+     if (strcmp(argv[i], "--version") == 0) {
+       printf("cmark-gfm %s", CMARK_GFM_VERSION_STRING);
+       printf(" - CommonMark with GitHub Flavored Markdown converter\n(C) 2014-2016 John MacFarlane\n");
++      printf(" - safreya patch\n");
+       goto success;
+     } else if (strcmp(argv[i], "--list-extensions") == 0) {
+       print_extensions();

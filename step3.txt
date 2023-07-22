@@ -51,7 +51,4 @@ do
 done < temp/list
 	cd $tempdir/onetex
 	cp $odir/wrap.tex ./
-#	xelatex wrap.tex
-#	xelatex wrap.tex
-#	cp wrap.pdf $odir/freebsdask.pdf
 

@@ -26,6 +26,21 @@ else
 	esac
 fi
 
+echo -e "\e[1;32m check graphicsmagick ... \e[0m"
+if pkg info -e graphicsmagick;then
+	echo -e "\e[1;32m found \e[0m"
+else
+	echo -e "\e[1;31m not found \e[0m"
+	read -p "begin to install graphicsmagick[Y|n] " ans
+	case $ans in
+		n) exit 1
+		;;
+		*) su -m root -c "pkg install -y graphicsmagick"
+		;;
+	esac
+fi
+
+
 echo -e "\e[1;32m check cmake ... \e[0m"
 if pkg info -e cmake;then
 	echo -e "\e[1;32m found \e[0m"

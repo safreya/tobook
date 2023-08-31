@@ -82,14 +82,4 @@ fi
 
 cd $odir
 
-if [ -d FreeBSD-Ask ];then
-	echo -e "\e[1;32m FreeBSD-Ask already download \e[0m"
-else
-	echo -e "\e[1;32m download FreeBSD-Ask \e[0m"
-	read -p "begin ? " pausenow
-	git clone --depth 1 https://github.com/FreeBSD-Ask/FreeBSD-Ask
-fi
-
-cd $odir
-
 echo -e "\e[1;32m prepare done \e[0m"

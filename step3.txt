@@ -1,23 +1,24 @@
-echo -e "\e[1;32m prepare *.tex \e[0m"
-read -p "begin ? " pausenow
+docpath=$1
 odir=`pwd`
-tempdir=$odir/temp
-docdir=$odir/FreeBSD-Ask
+tempdir=${odir}/${docpath}_temp
+docdir=$odir/$docpath
+
+echo -e "\e[1;32m prepare *.tex file for $docpath \e[0m"
+read -p "press [Enter] to begin ? " pausenow
+
 mkdir -p $tempdir/.gitbook
 mkdir -p $tempdir/onetex/.gitbook
 mkdir -p $tempdir/pdf
-mkdir -p $tempdir/onetex
 
 ln -s $docdir/.gitbook/assets $tempdir/.gitbook/assets
 ln -s $docdir/.gitbook/assets $tempdir/onetex/.gitbook/assets
 
-grep -o "([^(]*)\s*$" FreeBSD-Ask/mu-lu.md | sed -e 's/^(//' -e 's/)$//' |grep -v "mu-lu.md" > $tempdir/list
+grep -o "([^(]*)\s*$" $docpath/mu-lu.md | sed -e 's/^(//' -e 's/)$//' |grep -v "mu-lu.md" > $tempdir/list
 echo "FreeBSD 从入门到跑路" > $tempdir/chapter
-grep -o "##.*" FreeBSD-Ask/mu-lu.md|sed  -e "s/.*章[[:space:]]*//" >> $tempdir/chapter 
+grep -o "##.*" $docpath/mu-lu.md|sed  -e "s/.*章[[:space:]]*//" >> $tempdir/chapter 
+
 cat /dev/null > $tempdir/onetex/temp.tex 
-
 count=1
-
 while IFS= read -r line;do
 	eval "ch$count=\"$line\""
 	count=$((count+1))
@@ -48,7 +49,7 @@ do
 	# xelatex $file.tex
 	# cp $file.pdf $tempdir/pdf/$file.pdf
 	cd $odir
-done < temp/list
+done < $tempdir/list
 	cd $tempdir/onetex
 	cp $odir/wrap.tex ./
 

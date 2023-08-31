@@ -1,0 +1,28 @@
+docpath=$1
+baseurl="https://github.com/FreeBSD-Ask/"
+case $docpath in
+	FreeBSD-Ask|Handbook|porter-handbook)
+		echo "check $docpath update ..."
+		;;
+	*)
+		echo "$docpath not exist"
+		return
+	;;
+esac
+
+if [ -d $docpath ];then
+	echo -e "\e[1;32m $docpath already download \e[0m"
+else
+	echo -e "\e[1;32m download $docpath \e[0m"
+	read -p "press [Enter] to begin ? " pausenow
+	git clone --depth 1 $baseurl$docpath
+	if [ $? == 0 ];then return ;fi
+fi
+if [ -d $docpath ];then
+	cd FreeBSD-Ask
+	git reset --hard && git pull
+	if [ $? != 0 ];then echo -e "\e[1;33m download $docpath error \e[0m";fi
+else
+	echo -e "\e[1;33m download $docpath error \e[0m"
+fi
+

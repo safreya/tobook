@@ -1,16 +1,8 @@
 echo -e "\e[1;32m patch temp.tex \e[0m"
 read -p "begin ? " pausenow
+
 sed -i -e "s/\\\chapter{FreeBSD 中文社区}/\\\chapter*{FreeBSD 中文社区}\\\addcontentsline{toc}{chapter}{FreeBSD 中文社区}\\\setcounter{section}{0}/" temp/onetex/temp.tex
+
 sed -i -e "s/\\\chapter{FreeBSD 从入门到跑路}/\\\chapter*{FreeBSD 从入门到跑路}\\\addcontentsline{toc}{chapter}{FreeBSD 从入门到跑路}\\\setcounter{section}{0}/" temp/onetex/temp.tex
-
-gm convert ./FreeBSD-Ask/.gitbook/assets/proud_donor.gif ./FreeBSD-Ask/.gitbook/assets/proud_donor.jpg
-sed -i -e "s/\.gitbook\/assets\/proud_donor\.gif/\.gitbook\/assets\/proud_donor\.jpg/" temp/onetex/temp.tex
-
-gm convert ./FreeBSD-Ask/.gitbook/assets/installBSD2.jpg ./FreeBSD-Ask/.gitbook/assets/installBSD2.png
-sed -i -e "s/\.gitbook\/assets\/installBSD2\.jpg/\.gitbook\/assets\/installBSD2\.png/" temp/onetex/temp.tex
-
-
-gm convert ./FreeBSD-Ask/.gitbook/assets/installBSD3.jpg ./FreeBSD-Ask/.gitbook/assets/installBSD3.png
-sed -i -e "s/\.gitbook\/assets\/installBSD3\.jpg/\.gitbook\/assets\/installBSD3\.png/" temp/onetex/temp.tex
 
 sed -i -e "s/\\\section\({.*\.0.*节.*}\)/\\\section*\1\\\addcontentsline{toc}{section}\1/" temp/onetex/temp.tex

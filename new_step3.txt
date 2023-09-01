@@ -1,0 +1,47 @@
+docpath=$1
+baseurl="https://github.com/FreeBSD-Ask/"
+case $docpath in
+	FreeBSD-Ask|Handbook|porter-handbook)
+		echo "check $docpath update ..."
+		;;
+	*)
+		echo "doc $docpath not exist"
+		return
+	;;
+esac
+
+odir=`pwd`
+tempdir=${odir}/${docpath}_temp
+docdir=$odir/$docpath
+mulu=$docdir/mu-lu.md
+
+echo -e "\e[1;32m prepare *.tex file for $docpath \e[0m"
+read -p "press [Enter] to begin ? " pausenow
+
+mkdir -p $tempdir/.gitbook
+mkdir -p $tempdir/onetex/.gitbook
+mkdir -p $tempdir/pdf
+
+ln -s $docdir/.gitbook/assets $tempdir/.gitbook/assets
+ln -s $docdir/.gitbook/assets $tempdir/onetex/.gitbook/assets
+
+
+cat /dev/null > $tempdir/onetex/temp.tex
+
+while read line
+do
+	# part	
+	if echo "$line" | grep "^# ";then
+		echo "$line" | sed -e "s/^# /\\\part{/" -e "s/$/}/" >> $tempdir/onetex/temp.tex 
+	# chapter
+	elif echo "$line" | grep "^## ";then
+		echo "$line" | sed -e "s/^## /\\\chapter{/" -e "s/$/}/" >> $tempdir/onetex/temp.tex
+	# section
+	elif echo "$line" | grep "](";then
+		secpath=$(echo "$line"| sed -e "s/^.*](//" -e "s/)[[:space:]]*//") 
+		cmark-gfm -t latex -e table $docdir/$secpath >> $tempdir/onetex/temp.tex 
+	else
+		echo -e "line:\e[1;31m '$line' ignored \e[0m"
+	fi
+done < $mulu
+

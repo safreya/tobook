@@ -1,4 +1,15 @@
 docpath=$1
+baseurl="https://github.com/FreeBSD-Ask/"
+case $docpath in
+	FreeBSD-Ask|Handbook|porter-handbook)
+		echo "check $docpath update ..."
+		;;
+	*)
+		echo "doc $docpath not exist"
+		return
+	;;
+esac
+
 odir=`pwd`
 tempdir=${odir}/${docpath}_temp
 docdir=$odir/$docpath

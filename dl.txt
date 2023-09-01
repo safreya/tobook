@@ -19,7 +19,7 @@ else
 	if [ $? == 0 ];then return ;fi
 fi
 if [ -d $docpath ];then
-	cd FreeBSD-Ask
+	cd $docpath
 	git reset --hard && git pull
 	if [ $? != 0 ];then echo -e "\e[1;33m download $docpath error \e[0m";fi
 else

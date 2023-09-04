@@ -1,8 +1,7 @@
 docpath=$1
-baseurl="https://github.com/FreeBSD-Ask/"
 case $docpath in
 	FreeBSD-Ask|Handbook|porter-handbook)
-		echo "check $docpath update ..."
+		echo -e "\e[1;32m convert $docpath to latex ... \e[0m"
 		;;
 	*)
 		echo "doc $docpath not exist"
@@ -28,7 +27,7 @@ ln -s $docdir/.gitbook/assets $tempdir/onetex/.gitbook/assets
 
 cat /dev/null > $tempdir/onetex/temp.tex
 
-while read line
+while read -r line
 do
 	# part	
 	if echo "$line" | grep "^# ";then

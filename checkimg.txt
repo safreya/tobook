@@ -1,0 +1,13 @@
+imgpath=$1
+ls $imgpath > imgtemp
+while read -r line
+do
+	extension=$(echo "$line" | grep -o '\.[^.]*$' | grep -o '[^.]*$' | tr A-Z a-z )
+	f=$( gm identify  -verbose $imgpath/$line|grep  "Format: " |sed -e 's/ *Format: *//' -e 's/ .*//' | tr A-Z a-z )
+	if [ $extension != $f ];then
+		 echo -e "\e[1;31m caution: $line($f): format error \e[0m"
+	else
+		echo "$line"
+	fi
+done < imgtemp
+rm imgtemp

@@ -29,8 +29,10 @@ cat /dev/null > $tempdir/onetex/temp.tex
 
 while read -r line
 do
+	if echo "$line" | grep "mu-lu.md";then
+		echo -e "line:\e[1;31m '$line' ignored \e[0m"
 	# part	
-	if echo "$line" | grep "^# ";then
+	elif echo "$line" | grep "^# ";then
 		echo "$line" | sed -e "s/^# /\\\part{/" -e "s/$/}/" >> $tempdir/onetex/temp.tex 
 	# chapter
 	elif echo "$line" | grep "^## ";then

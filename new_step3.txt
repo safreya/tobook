@@ -12,7 +12,7 @@ esac
 odir=`pwd`
 tempdir=${odir}/${docpath}_temp
 docdir=$odir/$docpath
-mulu=$docdir/mu-lu.md
+mulu=$docdir/SUMMARY.md
 
 echo -e "\e[1;32m prepare *.tex file for $docpath \e[0m"
 read -p "press [Enter] to begin ? " pausenow
@@ -43,4 +43,13 @@ do
 		echo -e "line:\e[1;31m '$line' ignored \e[0m"
 	fi
 done < $mulu
+
+
+read -p "press [Enter] to begin compile ? " pausenow
+cd $tempdir/onetex
+cp ../../wrap.tex wrap.tex
+xelatex wrap.tex
+xelatex wrap.tex
+cp wrap.pdf ../../$docpath.pdf
+cd $odir
 

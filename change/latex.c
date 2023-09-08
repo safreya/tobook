@@ -330,7 +330,7 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
 		    ||strcmp(langname,"csh")==0
 		    ||strcmp(langname,"ksh")==0
 		    ||strcmp(langname,"sql")==0
-		    ) {LIT("[language=");LIT(node->as.code.info.data);LIT("]");}
+		    ) {LIT("[language=");LIT(langname);LIT("]");}
 
     CR();
     OUT(cmark_node_get_literal(node), false, LITERAL);

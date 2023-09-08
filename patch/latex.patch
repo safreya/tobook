@@ -1,5 +1,5 @@
---- cmark-gfm/src/latex.c	2023-09-08 09:38:21.898779000 +0800
-+++ change/latex.c	2023-09-08 09:36:58.373966000 +0800
+--- cmark-gfm/src/latex.c	2023-09-08 09:43:09.934617000 +0800
++++ change/latex.c	2023-09-08 09:43:46.425259000 +0800
 @@ -320,11 +320,22 @@
  
    case CMARK_NODE_CODE_BLOCK:
@@ -15,7 +15,7 @@
 +		    ||strcmp(langname,"csh")==0
 +		    ||strcmp(langname,"ksh")==0
 +		    ||strcmp(langname,"sql")==0
-+		    ) {LIT("[language=");LIT(node->as.code.info.data);LIT("]");}
++		    ) {LIT("[language=");LIT(langname);LIT("]");}
 +
      CR();
      OUT(cmark_node_get_literal(node), false, LITERAL);

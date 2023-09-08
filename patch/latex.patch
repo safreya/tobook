@@ -1,6 +1,6 @@
---- src/latex.c	2023-09-08 09:01:12.688623000 +0800
-+++ ../change/latex.c	2023-09-08 09:00:38.409355000 +0800
-@@ -320,11 +320,20 @@
+--- cmark-gfm/src/latex.c	2023-09-08 09:38:21.898779000 +0800
++++ change/latex.c	2023-09-08 09:36:58.373966000 +0800
+@@ -320,11 +320,22 @@
  
    case CMARK_NODE_CODE_BLOCK:
      CR();
@@ -8,11 +8,13 @@
 +    LIT("\\begin{lstlisting}");
 +    char langname[20];
 +    strcpy(langname,node->as.code.info.data);
-+    if(strcmp(langname,"shell-session"))strcpy(langname,"bash");
++    if(strcmp(langname,"shell-session")==0)strcpy(langname,"bash");
++    if(strcmp(langname,"shell")==0)strcpy(langname,"bash");
 +    if( strcmp(langname,"sh")==0
 +		    ||strcmp(langname,"bash")==0
 +		    ||strcmp(langname,"csh")==0
 +		    ||strcmp(langname,"ksh")==0
++		    ||strcmp(langname,"sql")==0
 +		    ) {LIT("[language=");LIT(node->as.code.info.data);LIT("]");}
 +
      CR();
@@ -23,7 +25,7 @@
      BLANKLINE();
      break;
  
-@@ -340,7 +349,7 @@
+@@ -340,7 +351,7 @@
  
    case CMARK_NODE_THEMATIC_BREAK:
      BLANKLINE();
@@ -32,7 +34,7 @@
      BLANKLINE();
      break;
  
-@@ -438,10 +447,10 @@
+@@ -438,10 +449,10 @@
  
    case CMARK_NODE_IMAGE:
      if (entering) {

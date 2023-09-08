@@ -321,6 +321,15 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
   case CMARK_NODE_CODE_BLOCK:
     CR();
     LIT("\\begin{lstlisting}");
+    char langname[20];
+    strcpy(langname,node->as.code.info.data);
+    if(strcmp(langname,"shell-session"))strcpy(langname,"bash");
+    if( strcmp(langname,"sh")==0
+		    ||strcmp(langname,"bash")==0
+		    ||strcmp(langname,"csh")==0
+		    ||strcmp(langname,"ksh")==0
+		    ) {LIT("[language=");LIT(node->as.code.info.data);LIT("]");}
+
     CR();
     OUT(cmark_node_get_literal(node), false, LITERAL);
     CR();

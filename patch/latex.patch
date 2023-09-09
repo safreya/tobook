@@ -1,5 +1,5 @@
---- cmark-gfm/src/latex.c	2023-09-08 09:43:09.934617000 +0800
-+++ change/latex.c	2023-09-08 09:43:46.425259000 +0800
+--- cmark-gfm/src/latex.c	2023-09-09 09:48:35.150126000 +0800
++++ change/latex.c	2023-09-09 09:48:09.599397000 +0800
 @@ -320,11 +320,22 @@
  
    case CMARK_NODE_CODE_BLOCK:
@@ -8,13 +8,13 @@
 +    LIT("\\begin{lstlisting}");
 +    char langname[20];
 +    strcpy(langname,node->as.code.info.data);
-+    if(strcmp(langname,"shell-session")==0)strcpy(langname,"bash");
-+    if(strcmp(langname,"shell")==0)strcpy(langname,"bash");
++    if(strcmp(langname,"shell")==0)strcpy(langname,"shell-session");
 +    if( strcmp(langname,"sh")==0
 +		    ||strcmp(langname,"bash")==0
 +		    ||strcmp(langname,"csh")==0
 +		    ||strcmp(langname,"ksh")==0
 +		    ||strcmp(langname,"sql")==0
++		    ||strcmp(langname,"shell-session")==0
 +		    ) {LIT("[language=");LIT(langname);LIT("]");}
 +
      CR();

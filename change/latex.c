@@ -323,13 +323,13 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
     LIT("\\begin{lstlisting}");
     char langname[20];
     strcpy(langname,node->as.code.info.data);
-    if(strcmp(langname,"shell-session")==0)strcpy(langname,"bash");
-    if(strcmp(langname,"shell")==0)strcpy(langname,"bash");
+    if(strcmp(langname,"shell")==0)strcpy(langname,"shell-session");
     if( strcmp(langname,"sh")==0
 		    ||strcmp(langname,"bash")==0
 		    ||strcmp(langname,"csh")==0
 		    ||strcmp(langname,"ksh")==0
 		    ||strcmp(langname,"sql")==0
+		    ||strcmp(langname,"shell-session")==0
 		    ) {LIT("[language=");LIT(langname);LIT("]");}
 
     CR();

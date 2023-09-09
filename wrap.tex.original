@@ -27,20 +27,6 @@
 	stringstyle=\color{orange},
 }
 %\sloppy
-\lstdefinelanguage{shell-session}{
-morekeywords={alias,bg,bind,builtin,caller,command,compgen,compopt,
-complete,coproc,declare,disown,dirs,enable,fc,fg,help,history,
-jobs,let,local,logout,mapfile,printf,pushd,popd,readarray,select,
-set,suspend,shopt,source,times,type,typeset,ulimit,unalias,wait,
-awk,break,case,cat,cd,continue,do,done,echo,elif,else,
-env,esac,eval,exec,exit,export,expr,false,fi,for,function,getopts,
-hash,history,if,in,kill,login,newgrp,nice,nohup,ps,pwd,read,
-readonly,return,set,sed,shift,test,then,times,trap,true,type,
-ulimit,umask,unset,until,wait,while},
-morecomment=[l]{\ \#},%
-morestring=[d]",%
-morestring=[d]’%
-}
 \begin{document}
 
 \tableofcontents

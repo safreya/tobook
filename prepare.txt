@@ -60,6 +60,21 @@ odir=`pwd`
 
 if /usr/bin/which -s cmark-gfm && ( cmark-gfm --version | grep -q safreya ) ;then
 	echo -e "\e[1;32m cmark-gfm safreya patch found \e[0m"
+	if [ $1 == "-f" ];then
+		echo -e "\e[1;31m option '-f' specified! rebuild cmark-gfm... \e[0m"
+		cd cmark-gfm
+		git reset --hard
+		cd $odir
+		patch cmark-gfm/extensions/table.c < patch/table.patch
+		patch cmark-gfm/src/latex.c < patch/latex.patch
+		patch cmark-gfm/src/main.c < patch/main.patch
+		mkdir buildcmarkgfm
+		cd buildcmarkgfm
+		cmake ../cmark-gfm
+		make
+		su -m root -c "make install"
+	fi
+		
 else
 	echo -e "\e[1;32m download cmark-gfm ... \e[0m"
 	read -p "begin ? " pausenow

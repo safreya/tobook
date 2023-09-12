@@ -62,8 +62,13 @@ if /usr/bin/which -s cmark-gfm && ( cmark-gfm --version | grep -q safreya ) ;the
 	echo -e "\e[1;32m cmark-gfm safreya patch found \e[0m"
 	if [ $1 == "-f" ];then
 		echo -e "\e[1;31m option '-f' specified! rebuild cmark-gfm... \e[0m"
+		git clone https://github.com/github/cmark-gfm
 		cd cmark-gfm
+		if [ $? != 0 ];then
+			exit 1
+		fi
 		git reset --hard
+		git checkout 2d65cd3c
 		cd $odir
 		patch cmark-gfm/extensions/table.c < patch/table.patch
 		patch cmark-gfm/src/latex.c < patch/latex.patch

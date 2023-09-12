@@ -1,3 +1,31 @@
+echo -e "\e[1;32m check git... \e[0m"
+if /usr/bin/which -s git;then
+	echo -e "\e[1;32m found \e[0m"
+else
+	echo -e "\e[1;31m not found \e[0m"
+	read -p "begin to install git-lite[Y|n] " ans
+	case $ans in
+		n) exit 1
+		;;
+		*) su -m root -c "pkg install -y git-lite"
+		;;
+	esac
+fi
+
+echo -e "\e[1;32m config proxy for git? \e[0m"
+read -p "enter [N|y] " ans
+case $ans in
+	y|Y)	read -p "proxy url? " proxyurl
+		if echo "$proxyurl" | grep "https:" ;then
+			git config --global https.proxy "$proxyurl"
+		else
+			git config --global http.proxy "$proxyurl" 
+		fi	
+		;;
+	*)
+		;;
+esac
+
 echo -e "\e[1;32m check texlive ... \e[0m"
 if pkg info -e texlive-base;then
 	echo -e "\e[1;32m found \e[0m"

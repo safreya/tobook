@@ -66,7 +66,7 @@ while read -r line
 do
 	if echo "$line" | grep "# Table of contents";then
 		echo -e "line:\e[1;31m '$line' ignored \e[0m"
-	elif echo "$line" | grep "mu-lu.md";then
+	elif echo "$line" | grep "$mulu";then
 		echo -e "line:\e[1;31m '$line' ignored \e[0m"
 	# part	
 	elif echo "$line" | grep "^# ";then
